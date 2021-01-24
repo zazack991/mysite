@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ポ宅・マップ</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+  <script>
+    function init() {
+      //地図を表示するdiv要素のidを設定
+      var map = L.map('mapcontainer');
+      //地図の中心とズームレベルを指定
+      map.setView([34.674147, 135.502063], 13); // 情報工学科
+      //表示するタイルレイヤのURLとAttributionコントロールの記述を設定して、地図に追加する
+      L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+          attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+      }).addTo(map);
+
+      //ポップアップする文字（HTML可、ここでは画像を表示）
+      var sucontents = "STUDIO A-Sh(スタジオアッシュ)梅田店<br>"
+      var popup1 = L.popup({ maxWidth: 550 }).setContent(sucontents);
+      L.marker([34.704139, 135.50586]).bindPopup(popup1).bindTooltip("自宅その１").addTo(map);
+
+      var sucontents = "ジャンカラ心斎橋3号店 104号室<br>"
+      var popup1 = L.popup({ maxWidth: 550 }).setContent(sucontents);
+      L.marker([34.674147, 135.502063]).bindPopup(popup1).bindTooltip("自宅その２").addTo(map);
+
+      var sucontents = "スプラウトレンタルスタジオ北梅田<br>"
+            var popup1 = L.popup({ maxWidth: 550 }).setContent(sucontents);
+            L.marker([34.710016, 135.497152]).bindPopup(popup1).bindTooltip("自宅その３").addTo(map);
+            
+
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div id="mapcontainer" style="width:600px;height:600px"></div>
+</body>
+</html>
+
